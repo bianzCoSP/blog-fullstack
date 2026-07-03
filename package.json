@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "biome check",
+    "format": "biome format --write",
+    "check": "biome check && tsc --noEmit"
   },
   "dependencies": {
     "next": "16.2.10",
