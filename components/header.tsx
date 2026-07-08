@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
 	{ name: "about", href: "/about" },
-	{ name: "projects", href: "/projects" },
 	{ name: "blog", href: "/blog" },
-	{ name: "contact", href: "/contact" },
 ];
 
 export const Header = () => {

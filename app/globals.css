@@ -53,17 +53,6 @@
 	--radius-2xl: calc(var(--radius) * 1.6);
 	--radius-3xl: calc(var(--radius) * 2);
 	--radius-4xl: calc(var(--radius) * 2.4);
-
-	--animate-scroll-cmds: scroll-cmds 22s linear infinite;
-
-	@keyframes scroll-cmds {
-		from {
-			transform: translateY(0);
-		}
-		to {
-			transform: translateY(-50%);
-		}
-	}
 }
 
 :root {
@@ -165,12 +154,6 @@
 }
 
 @layer components {
-	.terminal-titlebar {
-		@apply bg-secondary/60 border-border flex items-center gap-1.5 border-b px-3 py-2;
-	}
-	.terminal-dot {
-		@apply size-2.5 rounded-full;
-	}
 	.terminal-cursor {
 		@apply bg-core ml-0.5 inline-block h-[1em] w-[0.55em] translate-y-[0.15em] animate-[blink_1.1s_steps(1)_infinite];
 	}
