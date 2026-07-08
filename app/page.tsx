@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Home",
-	description: "Welcome to my Portfolio!",
+	title: "Blog",
+	description: "Blog Description",
 	openGraph: {
-		title: "Home",
-		description: "Welcome to my Portfolio!",
+		title: "Blog",
+		description: "Blog Description",
 	},
 };
 
-// hello from bianz!
-
-export default function Page() {
+export default function Home() {
 	return (
 		<div className="flex flex-col flex-1 items-center justify-center">
 			Hello World!
