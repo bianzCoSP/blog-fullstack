@@ -6,6 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
+		"includes": ["**", "!**/next", "!**/drizzle", "!**/public"],
 		"ignoreUnknown": false
 	},
 	"formatter": {
