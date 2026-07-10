@@ -15,7 +15,7 @@ async function main() {
 	console.log("resetting db");
 	await reset(db, schema);
 
-	await seed(db, schema).refine((f) => ({
+	await seed(db, schema, { seed: Date.now() }).refine((f) => ({
 		posts: {
 			count: 4,
 			columns: {
@@ -40,6 +40,12 @@ async function main() {
 			},
 		},
 	}));
+
+	await db.insert(schema.posts).values({
+		title: "post with no comments yet",
+		slug: "blog-post-5",
+		body: "this post intentionally has no comments.",
+	});
 
 	console.log("seed complete");
 }
