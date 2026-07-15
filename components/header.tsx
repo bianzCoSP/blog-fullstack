@@ -1,6 +1,7 @@
 "use client";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,6 +14,7 @@ const menuItems = [
 export const Header = () => {
 	const [menuState, setMenuState] = React.useState(false);
 	const [isScrolled, setIsScrolled] = React.useState(false);
+	const pathname = usePathname();
 
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -21,6 +23,10 @@ export const Header = () => {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
+
+	React.useEffect(() => {
+		if (pathname) setMenuState(false); // satisfy linter "hook specifies more dependencies than necessary"
+	}, [pathname]);
 
 	return (
 		<header className="sticky top-0 z-50">
