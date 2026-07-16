@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { z } from "zod";
 
 import { db } from "@/lib/db/drizzle";
@@ -44,7 +44,8 @@ export async function addComment(
 
 	await db.insert(comments).values({ postId, ...result.data });
 
-	revalidatePath(`/blog/${slug}`);
+	revalidateTag("posts", "max");
+	revalidateTag(`post-${slug}`, "max");
 
 	return { success: true };
 }
