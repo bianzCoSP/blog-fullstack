@@ -1,23 +1,14 @@
-import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 
 import { addComment } from "@/lib/actions/comment-actions";
-import { db } from "@/lib/db/drizzle";
-import { posts } from "@/lib/db/schema";
+import { getPostBySlug } from "@/lib/db/queries";
 
 import BlogContent from "./blog-content";
 import CommentForm from "./comment-form";
 import CommentList from "./comment-list";
 
 export default async function BlogPage({ slug }: { slug: string }) {
-	const post = await db.query.posts.findFirst({
-		where: eq(posts.slug, slug),
-		with: {
-			comments: {
-				orderBy: (comments, { asc }) => [asc(comments.createdAt)],
-			},
-		},
-	});
+	const post = await getPostBySlug(slug);
 
 	if (!post) {
 		notFound();

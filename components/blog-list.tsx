@@ -1,17 +1,9 @@
-import { desc } from "drizzle-orm";
-
-import { db } from "@/lib/db/drizzle";
-import { posts } from "@/lib/db/schema";
+import { getAllPosts } from "@/lib/db/queries";
 
 import BlogCard from "./blog-card";
 
 export default async function BlogList() {
-	const allPosts = await db.query.posts.findMany({
-		orderBy: desc(posts.createdAt),
-		with: {
-			comments: true,
-		},
-	});
+	const allPosts = await getAllPosts();
 
 	if (allPosts.length === 0) {
 		return <p className="text-muted-foreground">No posts yet.</p>;

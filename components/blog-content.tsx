@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import type { posts } from "@/lib/db/schema";
 
 type Post = typeof posts.$inferSelect;
@@ -9,6 +10,15 @@ export default function BlogContent({ post }: { post: Post }) {
 			<p className="mt-1 text-sm text-muted-foreground">
 				{new Date(post.createdAt).toLocaleDateString()}
 			</p>
+			{post.tags.length > 0 && (
+				<div className="mt-3 flex flex-wrap gap-1.5">
+					{post.tags.map((tag) => (
+						<Badge key={tag} variant="secondary">
+							{tag}
+						</Badge>
+					))}
+				</div>
+			)}
 			<div className="mt-6 whitespace-pre-wrap text-sm">{post.body}</div>
 		</div>
 	);

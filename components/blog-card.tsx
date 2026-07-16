@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Badge } from "@/components/ui/badge";
 import {
 	Card,
 	CardContent,
@@ -26,6 +27,15 @@ export default function BlogCard({ post }: { post: Post }) {
 				</CardHeader>
 				<CardContent>
 					<p className="line-clamp-3 text-muted-foreground">{post.body}</p>
+					{post.tags.length > 0 && (
+						<div className="mt-3 flex flex-wrap gap-1.5">
+							{post.tags.map((tag) => (
+								<Badge key={tag} variant="secondary">
+									{tag}
+								</Badge>
+							))}
+						</div>
+					)}
 				</CardContent>
 				{typeof post.commentCount === "number" && (
 					<CardFooter>

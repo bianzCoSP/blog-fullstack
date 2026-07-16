@@ -1,8 +1,28 @@
 import "dotenv/config";
 import { neon } from "@neondatabase/serverless";
+import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/neon-http";
 import { reset, seed } from "drizzle-seed";
 import * as schema from "./schema";
+
+const TAG_POOL = [
+	"javascript",
+	"typescript",
+	"react",
+	"nodejs",
+	"postgres",
+	"drizzle",
+	"webdev",
+	"tutorial",
+	"news",
+	"opinion",
+];
+
+function randomTags() {
+	const count = 1 + Math.floor(Math.random() * 3); // 1-3 tags
+	const shuffled = [...TAG_POOL].sort(() => Math.random() - 0.5);
+	return shuffled.slice(0, count);
+}
 
 async function main() {
 	if (!process.env.DATABASE_URL) {
@@ -41,11 +61,30 @@ async function main() {
 		},
 	}));
 
-	await db.insert(schema.posts).values({
-		title: "post with no comments yet",
-		slug: "blog-post-5",
-		body: "this post intentionally has no comments.",
+	const [post5] = await db
+		.insert(schema.posts)
+		.values({
+			title: "post with a pending comment",
+			slug: "blog-post-5",
+			body: "this post intentionally has only one unapproved comment.",
+		})
+		.returning({ id: schema.posts.id });
+
+	await db.insert(schema.comments).values({
+		postId: post5.id,
+		authorName: "Jane Doe",
+		body: "this comment is awaiting approval.",
+		approved: false,
 	});
+
+	console.log("assigning random tags");
+	const allPosts = await db.select({ id: schema.posts.id }).from(schema.posts);
+	for (const post of allPosts) {
+		await db
+			.update(schema.posts)
+			.set({ tags: randomTags() })
+			.where(eq(schema.posts.id, post.id));
+	}
 
 	console.log("seed complete");
 }
