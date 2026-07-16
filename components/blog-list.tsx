@@ -1,6 +1,6 @@
 import { getAllPosts } from "@/lib/db/queries";
 
-import BlogCard from "./blog-card";
+import BlogListPage from "./blog-list-page";
 
 export default async function BlogList() {
 	const allPosts = await getAllPosts();
@@ -10,13 +10,11 @@ export default async function BlogList() {
 	}
 
 	return (
-		<div className="grid gap-4">
-			{allPosts.map((post) => (
-				<BlogCard
-					key={post.id}
-					post={{ ...post, commentCount: post.comments.length }}
-				/>
-			))}
-		</div>
+		<BlogListPage
+			posts={allPosts.map((post) => ({
+				...post,
+				commentCount: post.comments.length,
+			}))}
+		/>
 	);
 }
