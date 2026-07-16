@@ -6,7 +6,14 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!**/next", "!**/drizzle", "!**/public"],
+		"includes": [
+			"**",
+			"!**/next",
+			"!**/drizzle",
+			"!**/public",
+			"!**/components/ui"
+		],
+
 		"ignoreUnknown": false
 	},
 	"formatter": {
