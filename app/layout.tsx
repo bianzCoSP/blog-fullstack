@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { JetBrains_Mono } from "next/font/google";
+import { Crimson_Pro } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Suspense } from "react";
 import { Header } from "@/components/header";
 import HeaderSkeleton from "@/components/header-skeleton";
 import { cn } from "@/lib/utils";
 
-const jetbrainsMono = JetBrains_Mono({
-	variable: "--font-mono-terminal",
+const crimsonPro = Crimson_Pro({
+	variable: "--font-body",
 	subsets: ["latin"],
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
 		<html
 			suppressHydrationWarning
 			lang="en"
-			className={cn("h-full", "antialiased", jetbrainsMono.variable)}
+			className={cn("h-full", "antialiased", crimsonPro.variable)}
 		>
 			<body className="min-h-full flex flex-col bg-background text-foreground">
 				<ThemeProvider attribute="class" enableSystem defaultTheme="system">

@@ -100,7 +100,7 @@ export default function BlogListPage({ posts }: { posts: Post[] }) {
 						render={
 							<Button
 								variant="outline"
-								className="justify-between sm:w-48"
+								className="justify-center sm:w-48"
 								disabled={allTags.length === 0}
 							/>
 						}

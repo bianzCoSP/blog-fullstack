@@ -1,15 +1,13 @@
 "use client";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const menuItems = [
-	{ name: "about", href: "/about" },
-	{ name: "blog", href: "/blog" },
-];
+const menuItems = [{ name: "blog", href: "/blog" }];
 
 export const Header = () => {
 	const [menuState, setMenuState] = React.useState(false);
@@ -44,13 +42,21 @@ export const Header = () => {
 							<Link
 								href="/"
 								aria-label="home"
-								className="text-core flex items-baseline text-base font-semibold tracking-tight transition-opacity hover:opacity-80"
+								className="group flex items-center gap-2.5 transition-opacity hover:opacity-90"
 							>
-								<span className="text-muted-foreground">bianz</span>
-								<span className="text-foreground/50">@</span>
-								<span>co</span>
-								<span className="text-foreground/50">:~$</span>
-								<span className="terminal-cursor" />
+								<div className="relative h-7 w-7 shrink-0 flex items-center justify-center">
+									<Image
+										src="/waxSeal.png"
+										alt="wax seal"
+										fill
+										sizes="36px"
+										className="object-contain"
+										priority
+									/>
+								</div>
+								<span className="text-base font-semibold tracking-[0.12em] text-foreground">
+									Adrift
+								</span>
 							</Link>
 
 							<button
@@ -64,13 +70,13 @@ export const Header = () => {
 							</button>
 						</div>
 
+						{/*
 						<div className="absolute inset-0 m-auto hidden size-fit lg:block">
 							<ul className="flex gap-1">
 								{menuItems.map((item) => (
 									<li key={item.name}>
 										<Button variant="ghost" size="sm">
 											<Link href={item.href} className="text-sm">
-												<span className="text-core/70">./</span>
 												<span>{item.name}</span>
 											</Link>
 										</Button>
@@ -78,6 +84,7 @@ export const Header = () => {
 								))}
 							</ul>
 						</div>
+            */}
 
 						<div className="bg-card in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-2xl border border-border p-6 shadow-2xl shadow-black/10 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
 							<div className="lg:hidden">
@@ -88,7 +95,6 @@ export const Header = () => {
 												href={item.href}
 												className="text-muted-foreground hover:text-core block duration-150"
 											>
-												<span className="text-core/70">./</span>
 												<span>{item.name}</span>
 											</Link>
 										</li>

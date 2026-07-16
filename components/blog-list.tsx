@@ -10,11 +10,14 @@ export default async function BlogList() {
 	}
 
 	return (
-		<BlogListPage
-			posts={allPosts.map((post) => ({
-				...post,
-				commentCount: post.comments.length,
-			}))}
-		/>
+		<div>
+			<h1 className="mb-6 text-3xl font-heading font-medium">Blog</h1>
+			<BlogListPage
+				posts={allPosts.map((post) => ({
+					...post,
+					commentCount: post.comments.length,
+				}))}
+			/>
+		</div>
 	);
 }

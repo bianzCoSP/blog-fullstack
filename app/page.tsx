@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+
+import Hero from "@/components/hero";
+import RecentPosts from "@/components/recent-posts";
+import RecentPostsSkeleton from "@/components/recent-posts-skeleton";
 
 export const metadata: Metadata = {
 	title: "Blog",
@@ -11,8 +16,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
 	return (
-		<div className="flex flex-col flex-1 items-center justify-center">
-			Hello World!
+		<div className="flex flex-1 flex-col">
+			<Hero />
+			<Suspense fallback={<RecentPostsSkeleton />}>
+				<RecentPosts />
+			</Suspense>
 		</div>
 	);
 }
