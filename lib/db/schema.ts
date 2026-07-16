@@ -1,11 +1,12 @@
 import { relations } from "drizzle-orm";
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const posts = pgTable("posts", {
 	id: uuid("id").primaryKey().defaultRandom(),
 	title: text("title").notNull(),
 	slug: text("slug").notNull().unique(),
 	body: text("body").notNull(),
+	tags: text("tags").array().notNull().default([]),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -16,6 +17,7 @@ export const comments = pgTable("comments", {
 		.notNull(),
 	authorName: text("author_name").notNull(),
 	body: text("body").notNull(),
+	approved: boolean("approved").notNull().default(false),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

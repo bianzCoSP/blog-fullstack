@@ -8,6 +8,13 @@
       "when": 1783660063482,
       "tag": "0000_charming_excalibur",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784168800003,
+      "tag": "0001_chubby_tarot",
+      "breakpoints": true
     }
   ]
 }
