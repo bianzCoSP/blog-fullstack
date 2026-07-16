@@ -20,29 +20,29 @@ export default function BlogCard({ post }: { post: Post }) {
 		<Link href={`/blog/${post.slug}`}>
 			<Card>
 				<CardHeader>
-					<CardTitle>{post.title}</CardTitle>
+					<CardTitle className="text-2xl">{post.title}</CardTitle>
 					<CardDescription>
 						{new Date(post.createdAt).toLocaleDateString()}
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<p className="line-clamp-3 text-muted-foreground">{post.body}</p>
-					{post.tags.length > 0 && (
-						<div className="mt-3 flex flex-wrap gap-1.5">
+				</CardContent>
+				{(post.tags.length > 0 || typeof post.commentCount === "number") && (
+					<CardFooter className="flex items-center justify-between">
+						<div className="flex flex-wrap gap-1.5">
 							{post.tags.map((tag) => (
 								<Badge key={tag} variant="secondary">
 									{tag}
 								</Badge>
 							))}
 						</div>
-					)}
-				</CardContent>
-				{typeof post.commentCount === "number" && (
-					<CardFooter>
-						<span className="text-xs text-muted-foreground">
-							{post.commentCount}{" "}
-							{post.commentCount === 1 ? "comment" : "comments"}
-						</span>
+						{typeof post.commentCount === "number" && (
+							<span className="text-xs text-muted-foreground">
+								{post.commentCount}{" "}
+								{post.commentCount === 1 ? "comment" : "comments"}
+							</span>
+						)}
 					</CardFooter>
 				)}
 			</Card>
