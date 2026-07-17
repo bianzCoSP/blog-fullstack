@@ -51,7 +51,6 @@ export default async function RecentPosts() {
 										sizes="36px"
 										className="object-contain"
 									/>
-									{/* Kept the dynamic post index layered on top */}
 									<span className="absolute font-mono text-xs font-semibold text-gold-bright">
 										{String(i + 1).padStart(2, "0")}
 									</span>

@@ -5,7 +5,7 @@ import { comments, posts } from "@/lib/db/schema";
 
 export async function getAllPosts() {
 	"use cache";
-	cacheLife("hours");
+	cacheLife("minutes");
 	cacheTag("posts");
 
 	return db.query.posts.findMany({
