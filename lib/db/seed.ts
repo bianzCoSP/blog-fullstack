@@ -64,16 +64,16 @@ async function main() {
 	const [post5] = await db
 		.insert(schema.posts)
 		.values({
-			title: "post with a pending comment",
+			title: "manual post",
 			slug: "blog-post-5",
-			body: "this post intentionally has only one unapproved comment.",
+			body: "this post is manually inserted instead of using drizzle's seeding for testing.",
 		})
 		.returning({ id: schema.posts.id });
 
 	await db.insert(schema.comments).values({
 		postId: post5.id,
 		authorName: "Jane Doe",
-		body: "this comment is awaiting approval.",
+		body: "test comment",
 		approved: false,
 	});
 

@@ -15,6 +15,13 @@
       "when": 1784168800003,
       "tag": "0001_chubby_tarot",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784250027782,
+      "tag": "0002_mysterious_talkback",
+      "breakpoints": true
     }
   ]
 }
